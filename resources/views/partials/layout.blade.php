@@ -24,7 +24,7 @@
 
 {{--Muestra la clase active si esta en el home, después de la ? es true : false, ACTIVA
     MENU EN VERDE MIENTRAS SE ESTE EN ESA VIEWS--}}
-<h1>{{request()->is('/') ? 'Estas en el home' : 'No estas en el home'}} </h1>
+<h1>{{request()->is('/') ? 'active' : ''}} </h1>
 
 @yield('contenido')
 

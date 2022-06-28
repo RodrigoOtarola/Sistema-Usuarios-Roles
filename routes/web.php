@@ -22,8 +22,30 @@ Route::view('/saludo',[\App\Http\Controllers\PagesController::class,'saludo'])->
 
 Route::view('/contacto',[\App\Http\Controllers\PagesController::class,'contacto'])->name('contacto');
 
-//Ruta de proceso de formulario
-Route::post('contacto',[\App\Http\Controllers\PagesController::class,'mensaje'])->name('mensaje');
 
-//Ruta para mensaje
-Route::get('saludo/create',[\App\Http\Controllers\MessagesController::class,'create'])->name('saludo.create');
+//Refactorización de rest y ejecuta las rutas
+Route::resource('mensaje','\App\Http\Controllers\MessagesController');
+
+//Ruta de proceso de formulario
+//Route::post('contacto',[\App\Http\Controllers\PagesController::class,'mensaje'])->name('mensaje');
+
+//Ruta para mostrar listado
+//Route::get('saludo',[\App\Http\Controllers\MessagesController::class,'index'])->name('mensaje.index');
+
+//Ruta para formulario de de creacion
+//Route::get('saludo/create',[\App\Http\Controllers\MessagesController::class,'create'])->name('mensaje.create');
+
+//Ruta para guardar formulario y redireccionar.
+//Route::post('saludo',[\App\Http\Controllers\MessagesController::class,'store'])->name('mensaje.store');
+
+//Ruta para ingresar a cada id.
+//Route::get('saludo/{id}',[\App\Http\Controllers\MessagesController::class,'show'])->name('mensaje.show');
+
+//Ruta para editar un id
+//Route::get('saludo/{id}/edit',[\App\Http\Controllers\MessagesController::class,'edit'])->name('mensaje.edit');
+
+//Ruta para actualizar el id.
+//Route::put('saludo/{id}',[\App\Http\Controllers\MessagesController::class,'update'])->name('mensaje.update');
+
+//Ruta para eliminar registro.
+//Route::delete('saludo/{id}',[\App\Http\Controllers\MessagesController::class,'destroy'])->name('mensaje.destroy');

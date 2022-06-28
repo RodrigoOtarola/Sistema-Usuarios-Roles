@@ -13,7 +13,7 @@
         {{--    Validación de errores--}}
         @include('validaciones.validacionForm')
 
-        <form action="contacto" method="POST">
+        <form action="{{route('mensaje.store')}}" method="POST">
             @csrf
             <label for="nombre">Nombre
                 <input type="text" name="nombre" value="{{old('nombre')}}">
