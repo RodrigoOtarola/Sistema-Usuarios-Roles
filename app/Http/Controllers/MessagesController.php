@@ -15,6 +15,13 @@ class MessagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        //En caso de ingresar directo a una ruta, la direcciona al login, exceptos los pasados por el parametro except.
+        $this->middleware('auth',['except'=>'create','store']);
+    }
+
+
     public function index()
     {
         //$messages = DB::table('messages')->get();

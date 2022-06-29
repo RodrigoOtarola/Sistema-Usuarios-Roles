@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 //Para llamar vistas desde el controlador PagesController
 Route::view('/',[\App\Http\Controllers\PagesController::class,'home'])->name('home');
 
-Route::view('/saludo',[\App\Http\Controllers\PagesController::class,'saludo'])->name('saludo');
+//Route::view('/saludo',[\App\Http\Controllers\PagesController::class,'saludo'])->name('saludo');
 
-Route::view('/contacto',[\App\Http\Controllers\PagesController::class,'contacto'])->name('contacto');
+//Route::view('/contacto',[\App\Http\Controllers\PagesController::class,'contacto'])->name('contacto');
 
 
 //Refactorización de rest y ejecuta las rutas
@@ -49,3 +49,11 @@ Route::resource('mensaje','\App\Http\Controllers\MessagesController');
 
 //Ruta para eliminar registro.
 //Route::delete('saludo/{id}',[\App\Http\Controllers\MessagesController::class,'destroy'])->name('mensaje.destroy');
+
+Auth::routes();
+
+//Para implementar el boton cierre de sesión en nav.
+Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

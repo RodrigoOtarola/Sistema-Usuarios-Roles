@@ -18,15 +18,15 @@ class PagesController extends Controller
         return view('home');
     }
 
-    public function saludo()
-    {
-        return view('saludo');
-    }
-
-    public function contacto()
-    {
-        return view('contacto');
-    }
+//    public function saludo()
+//    {
+//        return view('saludo');
+//    }
+//
+//    public function contacto()
+//    {
+//        return view('contacto');
+//    }
 
     //Se crea request para validación de formulario
     public function mensaje(CreateMessageRequest $request)
