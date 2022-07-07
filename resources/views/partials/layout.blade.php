@@ -9,16 +9,19 @@
     <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 <body>
+<div class="container-fluid">
 
-@include('partials.nav')
+    @include('partials.nav')
 
-
+</div>
 {{--Muestra la clase active si esta en el home, después de la ? es true : false, ACTIVA
     MENU EN VERDE MIENTRAS SE ESTE EN ESA VIEWS--}}
-<h1>{{request()->is('/') ? 'active' : ''}} </h1>
+{{--<h1>{{request()->is('/') ? 'active' : ''}} </h1>--}}
+<div class="container">
+    @yield('contenido')
 
-@yield('contenido')
 
-<footer>Copyright {{date('Y')}}</footer>
+    <footer>Copyright {{date('Y')}}</footer>
+</div>
 </body>
 </html>

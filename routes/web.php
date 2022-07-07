@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //Rutas de entradas para la aplicacion.
 
 //Para llamar vistas desde el controlador PagesController
-Route::view('/',[\App\Http\Controllers\PagesController::class,'home'])->name('home');
+Route::get('/',[\App\Http\Controllers\PagesController::class,'home'])->name('index');
 
 //Route::view('/saludo',[\App\Http\Controllers\PagesController::class,'saludo'])->name('saludo');
 
@@ -55,5 +55,11 @@ Auth::routes();
 //Para implementar el boton cierre de sesión en nav.
 Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
+//Ruta para al cerrar sesión volver al home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Ruta para mostrar usuarios
+Route::get('usuarios',[\App\Http\Controllers\UsersController::class,'index'])->name('usuarios.index');
+
+
 

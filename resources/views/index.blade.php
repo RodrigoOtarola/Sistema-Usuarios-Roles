@@ -1,7 +1,5 @@
 @extends('partials.layout')
 
-@section('title','Saludo')
-
 @section('contenido')
-    <h2>Hola desde saludo</h2>
+    <h2>Home</h2>
 @endsection

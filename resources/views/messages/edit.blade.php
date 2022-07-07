@@ -8,16 +8,16 @@
         @csrf
         @method('PUT')
         <label for="nombre">Nombre
-            <input type="text" name="nombre" value="{{$message->nombre}}">
+            <input class="form-control" type="text" name="nombre" value="{{$message->nombre}}">
         </label><br>
         <label for="email">E-mail
-            <input type="email" name="email" value="{{$message->email}}">
+            <input class="form-control" type="email" name="email" value="{{$message->email}}">
         </label><br>
         <label for="comentario">
             Comentario
-            <textarea name="comentario" id="" cols="30" rows="5">{{$message->comentario}}</textarea>
+            <textarea class="form-control" name="comentario" id="" cols="30" rows="5">{{$message->comentario}}</textarea>
         </label><br>
-        <button type="submit">Actualizar</button>
+        <button class="btn btn-primary" type="submit">Actualizar</button>
     </form>
     <hr>
 

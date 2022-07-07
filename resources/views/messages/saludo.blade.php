@@ -4,9 +4,9 @@
 
 @section('contenido')
 
-    <h1>Todos los mensajes:</h1>
+    <h3 class="mt-5">Todos los mensajes:</h3>
 
-    <table border="2" width="70%">
+    <table class="table">
         <thead>
         <th>ID</th>
         <th>Nombre</th>
@@ -26,12 +26,12 @@
                 <td>{{$message->comentario}}</td>
                 <td>
                     <a href="{{route('mensaje.edit',$message->id)}}">
-                        <button>Editar</button>
+                        <button class="btn btn-xs btn-warning">Editar</button>
                     </a>
                     <form style="display: inline" action="{{route('mensaje.destroy', $message->id)}}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit">Eliminar</button>
+                        <button  class="btn btn-xs btn-danger" type="submit">Eliminar</button>
                     </form>
                 </td>
             </tr>

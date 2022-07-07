@@ -29,7 +29,7 @@ class MessagesController extends Controller
         //Con eloquent
         $messages = Message::all();
 
-        return view('messages.index', compact('messages'));
+        return view('messages.saludo', compact('messages'));
     }
 
     /**
