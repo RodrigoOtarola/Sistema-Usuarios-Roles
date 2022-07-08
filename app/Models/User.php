@@ -42,11 +42,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasRoles($roles){
+    public function getNameAttribute($name)
+    {
+        return ucfirst($name);
+    }
+
+
+
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasRoles(array $roles){
 
         foreach ($roles as $role){
-            if($this->role === $role){
-                return  true;
+            //Para que reconozca tipo de rol
+            if($this->role->name === $role){
+                return true;
             }
         }
 

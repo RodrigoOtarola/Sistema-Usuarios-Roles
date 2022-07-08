@@ -61,5 +61,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Ruta para mostrar usuarios
 Route::get('usuarios',[\App\Http\Controllers\UsersController::class,'index'])->name('usuarios.index');
 
-
+//Ruta para ver el tipo de rol.
+Route::get('roles', function (){
+    return \App\Models\Role::with('user')->get();
+});
 

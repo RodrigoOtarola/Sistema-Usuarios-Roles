@@ -17,7 +17,8 @@ class UsersController extends Controller
         //Para que vista usuarios no sea visible sin estar autenticados, role se pasa como parametro del middleware
         //para reconocer que sean admin.
         //Estudiante es para pasar otro perfil al middleware, para que pueda ver a los usuarios.
-        $this->middleware(['auth','roles:admin']);
+        $this->middleware('auth');
+        //$this->middleware(['auth','roles:admin']);
 
     }
 
