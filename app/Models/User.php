@@ -50,16 +50,22 @@ class User extends Authenticatable
 
 
 
-    public function role(){
-        return $this->belongsTo(Role::class);
+    public function roles(){
+        //return $this->belongsTo(Role::class); relacion uno a uno
+
+        //muchos a muchos, 2do parametro es para pasar nombre de tabala pivote, por defecto reconecería role_user.
+        return $this->belongsToMany(Role::class,'assigned_roles');
     }
 
     public function hasRoles(array $roles){
 
         foreach ($roles as $role){
-            //Para que reconozca tipo de rol
-            if($this->role->name === $role){
-                return true;
+            //foreach es para hacer loop para reconocer role
+            foreach ($this->roles as $userRole){
+                //Para que reconozca tipo de rol
+                if($userRole->name === $role){
+                    return true;
+                }
             }
         }
 

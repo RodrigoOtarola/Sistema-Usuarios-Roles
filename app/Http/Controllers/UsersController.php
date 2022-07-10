@@ -12,7 +12,6 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     function __construct(){
         //Para que vista usuarios no sea visible sin estar autenticados, role se pasa como parametro del middleware
         //para reconocer que sean admin.
@@ -26,7 +25,7 @@ class UsersController extends Controller
     {
         //Para pedir todos los usuarios de la base de datos.
         $users = User::all();
-            return view('users.index',compact('users'));
+        return view('users.index',compact('users'));
     }
 
     /**

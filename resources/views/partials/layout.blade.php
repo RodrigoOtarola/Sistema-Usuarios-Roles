@@ -20,8 +20,8 @@
 <div class="container">
     @yield('contenido')
 
-
-    <footer>Copyright {{date('Y')}}</footer>
+</div>
+<footer>Copyright {{date('Y')}}</footer>
 </div>
 </body>
 </html>

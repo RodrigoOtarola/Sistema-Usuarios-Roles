@@ -24,10 +24,12 @@
                     {{--    Para cerrar sesion--}}
                 @else(auth()->check())
                     {{--Si el usuario es admin, permite ver usuarios.--}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('mensaje.index')}}">Detalle</a>
+                    </li>
+
                     @if(auth()->user()->hasRoles(['admin']))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('mensaje.index')}}">Detalle</a>
-                        </li>
+
                         <li class="">
                             <a class="nav-link" href="{{route('usuarios.index')}}">Usuarios</a>
                         </li>
