@@ -59,7 +59,9 @@ Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Ruta para mostrar usuarios
-Route::get('usuarios',[\App\Http\Controllers\UsersController::class,'index'])->name('usuarios.index');
+//Route::get('usuarios',[\App\Http\Controllers\UsersController::class,'index'])->name('usuarios.index');
+
+Route::resource('usuarios','\App\Http\Controllers\UsersController');
 
 //Ruta para ver el tipo de rol.
 Route::get('roles', function (){

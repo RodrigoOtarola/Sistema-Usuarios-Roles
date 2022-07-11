@@ -28,11 +28,20 @@
                                         {{$role->display_name}}
                                     @endforeach
                                 </td>
+                                <td>
+                                    <a class="btn btn-xs btn-warning" href="{{route('usuarios.edit',$user->id)}}">Editar</a>
+                                    <form style="display:inline" action="{{route('usuarios.destroy', $user->id)}}"
+                                          method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-xs btn-danger" type="submit">Eliminar</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-{{--                    {{$users->links('pagination::bootstrap-4')}}--}}
+                    {{--                    {{$users->links('pagination::bootstrap-4')}}--}}
                 </div>
             </div>
         </div>

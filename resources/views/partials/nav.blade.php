@@ -21,15 +21,14 @@
 
                     <a class="nav-link{{request()->is('login') ? 'active' : ''}}" href="login">Login</a>
 
-                    {{--    Para cerrar sesion--}}
                 @else(auth()->check())
-                    {{--Si el usuario es admin, permite ver usuarios.--}}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('mensaje.index')}}">Detalle</a>
                     </li>
 
                     @if(auth()->user()->hasRoles(['admin']))
-
+                        {{--Si el usuario es admin, permite ver usuarios.--}}
                         <li class="">
                             <a class="nav-link" href="{{route('usuarios.index')}}">Usuarios</a>
                         </li>
@@ -41,7 +40,11 @@
                             {{auth()->user()->name}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {{--    Para cerrar sesion--}}
                             <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+                            {{--    Para editar información, se debe crear politica de acceso--}}
+                            <li><a class="dropdown-item" href="/usuarios/{{auth()->id()}}/edit">Mi perfil</a></li>
+
                         </ul>
                     </li>
                     {{--                    <a class="nav-link me-auto" href="/logout">Cerrar Sesión</a>--}}

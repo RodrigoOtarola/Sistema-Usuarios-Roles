@@ -47,9 +47,6 @@ class User extends Authenticatable
         return ucfirst($name);
     }
 
-
-
-
     public function roles(){
         //return $this->belongsTo(Role::class); relacion uno a uno
 

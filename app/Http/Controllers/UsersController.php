@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class UsersController extends Controller
         //para reconocer que sean admin.
         //Estudiante es para pasar otro perfil al middleware, para que pueda ver a los usuarios.
         $this->middleware('auth');
-        //$this->middleware(['auth','roles:admin']);
+        $this->middleware('roles:admin',['except'=>['edit']]);//Para que ignore el metodo edit
 
     }
 
@@ -64,11 +65,16 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        //Pasamos politica
+        $this->authorize($user);
+
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -78,9 +84,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return back()->with('info','Usuario actualizado con exito');
     }
 
     /**
