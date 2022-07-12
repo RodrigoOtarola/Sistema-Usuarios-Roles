@@ -17,8 +17,8 @@ class UsersController extends Controller
         //Para que vista usuarios no sea visible sin estar autenticados, role se pasa como parametro del middleware
         //para reconocer que sean admin.
         //Estudiante es para pasar otro perfil al middleware, para que pueda ver a los usuarios.
-        $this->middleware('auth');
-        $this->middleware('roles:admin',['except'=>['edit']]);//Para que ignore el metodo edit
+        $this->middleware('auth',['except'=>['show']]);
+        $this->middleware('roles:admin',['except'=>['edit','update','show']]);//Para que ignore el metodo edit
 
     }
 
@@ -58,7 +58,10 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        //Para editar algo especifico
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -72,7 +75,8 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
 
         //Pasamos politica
-        $this->authorize($user);
+        //$this->authorize($user);
+        $this->authorize('edit',$user);
 
         return view('users.edit',compact('user'));
     }
@@ -87,7 +91,11 @@ class UsersController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
+
+        $this->authorize('update',$user);
+
         $user->update($request->all());
+
         return back()->with('info','Usuario actualizado con exito');
     }
 
@@ -99,6 +107,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $this->authorize('destroy',$user);
+
+        $user->delete();
+
+        return back();
     }
 }

@@ -69,4 +69,9 @@ class User extends Authenticatable
         return false;
         //return $this->role === $role;
     }
+
+    //Llamado desde el UserPolicy
+    public function isAdmin(){
+        return $this->hasRoles(['admin']);
+    }
 }
