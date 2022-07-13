@@ -40,10 +40,11 @@
                             {{auth()->user()->name}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            {{--    Para cerrar sesion--}}
-                            <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
                             {{--    Para editar información, se debe crear politica de acceso--}}
                             <li><a class="dropdown-item" href="/usuarios/{{auth()->id()}}/edit">Mi perfil</a></li>
+                            {{--    Para cerrar sesion--}}
+                            <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+
 
                         </ul>
                     </li>

@@ -56,17 +56,22 @@ class User extends Authenticatable
 
     public function hasRoles(array $roles){
 
-        foreach ($roles as $role){
-            //foreach es para hacer loop para reconocer role
-            foreach ($this->roles as $userRole){
-                //Para que reconozca tipo de rol
-                if($userRole->name === $role){
-                    return true;
-                }
-            }
-        }
+        return $this->roles->pluck('name')->intersect($roles)->count();
 
-        return false;
+//        foreach ($roles as $role){
+
+            //Con collection, primero obtiene los nombres en un arreglo y después de uno de los roles
+//            return $this->roles->pluck('name')->contains($role);
+            //foreach es para hacer loop para reconocer role
+//            foreach ($this->roles as $userRole){
+//                //Para que reconozca tipo de rol
+//                if($userRole->name === $role){
+//                    return true;
+//                }
+//            }
+//        }
+
+//        return false;
         //return $this->role === $role;
     }
 
