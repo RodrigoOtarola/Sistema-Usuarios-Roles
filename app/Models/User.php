@@ -79,4 +79,10 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->hasRoles(['admin']);
     }
+
+    //Relacion de user con messages, un usuario puede tener varios mensajes
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+
 }

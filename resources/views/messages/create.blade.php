@@ -14,18 +14,9 @@
         @include('validaciones.validacionForm')
 
         <form action="{{route('mensaje.store')}}" method="POST">
-            @csrf
-            <label for="nombre">Nombre
-                <input class="form-control" type="text" name="nombre" value="{{old('nombre')}}">
-            </label><br>
-            <label for="email">E-mail
-                <input class="form-control" type="email" name="email" value="{{old('email')}}">
-            </label><br>
-            <label for="comentario">
-                Comentario
-                <textarea class="form-control" name="comentario" id="" cols="30" rows="5">{{old('comentario')}}</textarea>
-            </label><br>
-            <button class="btn btn-primary" type="submit">Enviar</button>
+
+            @include('messages.form',['message'=>new App\Models\Message()])
+
         </form>
         <hr>
     @endif

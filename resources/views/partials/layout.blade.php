@@ -21,6 +21,12 @@
     @yield('contenido')
 
 </div>
+<div class="mt-5 p-2 bg-dark text-white text-center" style="    position: fixed;
+    width: 100%;
+    bottom: 0;
+    margin-top: 5px;
+    font-size: 15px;
+    letter-spacing: 3px;">
 <footer>Copyright {{date('Y')}}</footer>
 </div>
 </body>

@@ -72,8 +72,19 @@ class MessagesController extends Controller
 //        $message->comentario = $request->comentario;
 //        $message->save();
 
-        //con metodo create, se debe crea $filalable en el modelo
-        Message::create($request->all());
+        //con metodo create, se debe crea $fillable en el modelo
+        //$message = Message::create($request->all());
+//
+//        if(auth()->check()){
+//            auth()->user()->messages()->save($message);
+//        }
+
+//        Para ejecucion solo con usuarios autenticados.
+
+        auth()->user()->messages()->create($request->all());
+
+//        $message->user_id = auth()->id();
+//        $message->save();
 
         //Rediccionar
         return redirect()->route('mensaje.index');

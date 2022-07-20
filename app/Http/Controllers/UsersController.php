@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class UsersController extends Controller
     public function index()
     {
         //Para pedir todos los usuarios de la base de datos.
-        $users = User::all();
+        $users = User::paginate(7);
         return view('users.index',compact('users'));
     }
 
@@ -36,7 +37,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::pluck('display_name','id');
+
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -78,7 +81,10 @@ class UsersController extends Controller
         //$this->authorize($user);
         $this->authorize('edit',$user);
 
-        return view('users.edit',compact('user'));
+        //Para mostrar roles en editar usuario
+        $roles = Role::pluck('display_name','id');
+
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -95,6 +101,9 @@ class UsersController extends Controller
         $this->authorize('update',$user);
 
         $user->update($request->all());
+
+        //Para actualizar roles, sync para evitar duplicaciones
+        $user->roles()->sync($request->roles);
 
         return back()->with('info','Usuario actualizado con exito');
     }

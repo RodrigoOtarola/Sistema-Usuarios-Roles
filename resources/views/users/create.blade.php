@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Editar usuario:</span>
+                    <span>Crear usuario:</span>
                 </div>
                 @if (session()->has('info'))
                     <div class="alert alert-success">
@@ -15,14 +15,12 @@
                 @endif
                 @include('validaciones.validacionForm')
                 <div class="card-body">
-                    <form action="{{route('usuarios.update',$user->id)}}" method="POST">
+                    <form action="{{route('usuarios.create')}}" method="POST">
 
-                        @method('PUT')
-
-                        @include('users.form')
+                        @include('users.form',['user'=>new App\Models\User()])
 
                         <br>
-                        <button class="btn btn-primary" type="submit">Actualizar</button>
+                        <button class="btn btn-primary" type="submit">Guardar</button>
                     </form>
 
                 </div>
