@@ -13,4 +13,10 @@ class Message extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    //Relacion con modelo Note
+    public function note(){
+        //Un mensaje solo puede tener una nota
+        return $this->hasOne(Note::class);
+    }
 }

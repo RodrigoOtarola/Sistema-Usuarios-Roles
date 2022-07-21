@@ -15,7 +15,7 @@
                 @endif
                 @include('validaciones.validacionForm')
                 <div class="card-body">
-                    <form action="{{route('usuarios.create')}}" method="POST">
+                    <form action="{{route('usuarios.store')}}" method="POST">
 
                         @include('users.form',['user'=>new App\Models\User()])
 

@@ -17,6 +17,7 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Mensaje</th>
+                        <th>Notas</th>
                         <th>Acciones</th>
                         </thead>
                         <tbody>
@@ -33,6 +34,10 @@
                                     <td>{{$message->email}}</td>
                                 @endif
                                 <td><a href="{{route('mensaje.show',$message->id)}}">{{$message->comentario}}</a></td>
+
+                                {{--Para mostrar notas del mensjae--}}
+                                <td>{{$message->note->body}}</td>
+
                                 <td>
                                     <a class="btn btn-xs btn-warning" href="{{route('mensaje.edit',$message->id)}}">
                                         Editar

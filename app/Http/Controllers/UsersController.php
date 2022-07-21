@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
@@ -26,7 +27,7 @@ class UsersController extends Controller
     public function index()
     {
         //Para pedir todos los usuarios de la base de datos.
-        $users = User::paginate(7);
+        $users = User::paginate(8);
         return view('users.index',compact('users'));
     }
 
@@ -45,12 +46,19 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        //Para inserta nueva usuario, parametros por el request
+        $user = User::create($request->all());
+
+        //Para insertar roles, como es usuario nuevo, no se necesita ver duplicidad.
+        $user->roles()->attach($request->roles);
+
+        return redirect()->route('usuarios.index');
+
     }
 
     /**
@@ -100,7 +108,7 @@ class UsersController extends Controller
 
         $this->authorize('update',$user);
 
-        $user->update($request->all());
+        $user->update($request->only('name','email'));//Para que solo actualice estos dos campos
 
         //Para actualizar roles, sync para evitar duplicaciones
         $user->roles()->sync($request->roles);

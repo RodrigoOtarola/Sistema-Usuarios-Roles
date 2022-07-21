@@ -16,6 +16,7 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Nota</th>
                         <th>Acciones</th>
                         </thead>
                         <tbody>
@@ -33,6 +34,10 @@
                                     {{--                                    Implode recibe como parameto el tipo de separador--}}
                                     {{$user->roles->pluck('display_name')->implode(' - ')}}
                                 </td>
+
+                                {{--Agregar notas a usuarios--}}
+                                <td>Notas de administrador</td>
+
                                 <td>
                                     <a class="btn btn-xs btn-warning"
                                        href="{{route('usuarios.edit',$user->id)}}">Editar</a>

@@ -85,4 +85,10 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    //Para encriptar clave en usuarios creados, sintaxis setNombreCampoAtribute.
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
 }
