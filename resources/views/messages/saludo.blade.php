@@ -35,7 +35,7 @@
                                 @endif
                                 <td><a href="{{route('mensaje.show',$message->id)}}">{{$message->comentario}}</a></td>
 
-                                {{--Para mostrar notas del mensjae--}}
+                                {{--Para mostrar notas del mensaje--}}
                                 <td>{{$message->note->body}}</td>
 
                                 <td>

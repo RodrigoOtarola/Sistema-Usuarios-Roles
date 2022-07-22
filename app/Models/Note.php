@@ -13,7 +13,7 @@ class Note extends Model
     protected $fillable=['body'];
 
     //Relacion con el modelo Message
-    public function message(){
-        return $this->belongsTo(Message::class);
+    public function notable(){
+        return $this->morphTo();//no le pasamos parametro
     }
 }

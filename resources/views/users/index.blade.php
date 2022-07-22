@@ -36,7 +36,7 @@
                                 </td>
 
                                 {{--Agregar notas a usuarios--}}
-                                <td>Notas de administrador</td>
+                                <td>{{$user->note->body}}</td>
 
                                 <td>
                                     <a class="btn btn-xs btn-warning"

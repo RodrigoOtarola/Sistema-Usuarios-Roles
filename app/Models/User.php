@@ -91,4 +91,9 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+    public function note(){
+        //Un mensaje solo puede tener una nota
+        return $this->morphOne(Note::class,'notable');//Recibe el prefijo con el que se crea la relacion.
+    }
+
 }
