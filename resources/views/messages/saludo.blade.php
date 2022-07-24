@@ -36,7 +36,7 @@
                                 <td><a href="{{route('mensaje.show',$message->id)}}">{{$message->comentario}}</a></td>
 
                                 {{--Para mostrar notas del mensaje--}}
-                                <td>{{$message->note->body}}</td>
+                                <td>{{$message->note->body??null}}</td>
 
                                 <td>
                                     <a class="btn btn-xs btn-warning" href="{{route('mensaje.edit',$message->id)}}">

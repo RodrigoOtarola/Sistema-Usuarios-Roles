@@ -20,7 +20,7 @@ class CreateNotesTable extends Migration
             //$table->foreign('message_id')->references('id')->on('messages');Para hacer relacion con foreign key.
 
             $table->integer('notable_id')->unsigned();//iria el id.
-            $table->string('notable_type');//Para definir tipo de relacion, iria el modelo User
+            $table->string('notable_type');//Para definir tipo de relacion, iria el modelo User o message
             $table->timestamps();
         });
     }

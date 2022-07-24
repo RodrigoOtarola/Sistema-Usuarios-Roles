@@ -17,6 +17,6 @@ class Message extends Model
     //Relacion con modelo Note
     public function note(){
         //Un mensaje solo puede tener una nota
-        return $this->morphOne(Note::class,'notable');//Recibe el prfijo con el que se crea la relacion.
+        return $this->morphOne(Note::class,'notable');//Recibe el prefijo con el que se crea la relacion.
     }
 }
