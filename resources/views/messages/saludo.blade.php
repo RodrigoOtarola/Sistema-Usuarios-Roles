@@ -13,17 +13,18 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                        <th>ID</th>
+                        {{--                        <th>ID</th>--}}
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Mensaje</th>
                         <th>Notas</th>
+                        <th>Etiquetas</th>
                         <th>Acciones</th>
                         </thead>
                         <tbody>
                         @foreach($messages as $message)
                             <tr>
-                                <td>{{$message->id}}</td>
+                                {{--                                <td>{{$message->id}}</td>--}}
 
                                 {{--                Relacion uno a uno en el modelo--}}
                                 @if($message->user_id)
@@ -37,6 +38,7 @@
 
                                 {{--Para mostrar notas del mensaje--}}
                                 <td>{{$message->note->body??null}}</td>
+                                <td>{{$message->tags->pluck('name')->implode('-')}}</td>
 
                                 <td>
                                     <a class="btn btn-xs btn-warning" href="{{route('mensaje.edit',$message->id)}}">

@@ -12,19 +12,20 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                        <th>ID</th>
+{{--                        <th>ID</th>--}}
                         <th>Nombre</th>
-                        <th>Email</th>
+{{--                        <th>Email</th>--}}
                         <th>Role</th>
                         <th>Nota</th>
+                        <th>Etiquetas</th>
                         <th>Acciones</th>
                         </thead>
                         <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{$user->id}}</td>
+{{--                                <td>{{$user->id}}</td>--}}
                                 <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
+{{--                                <td>{{$user->email}}</td>--}}
                                 {{--                <td>{{$user->role->display_name}}</td>--}}
                                 <td>
                                     {{--                                    @foreach($user->roles as $role)--}}
@@ -37,6 +38,9 @@
 
                                 {{--Agregar notas a usuarios--}}
                                 <td>{{$user->note->body??null}}</td>
+
+                                {{--Etiquetas de usuarios--}}
+                                <td>{{$user->tags->pluck('name')->implode('-')}}</td>
 
                                 <td>
                                     <a class="btn btn-xs btn-warning"

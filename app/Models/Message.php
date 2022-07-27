@@ -19,4 +19,9 @@ class Message extends Model
         //Un mensaje solo puede tener una nota
         return $this->morphOne(Note::class,'notable');//Recibe el prefijo con el que se crea la relacion.
     }
+
+    //Relacion modelo tags.
+    public function tags(){
+        return $this->morphToMany(Tag::class,'taggable');
+    }
 }

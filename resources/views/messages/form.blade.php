@@ -2,14 +2,16 @@
 {{--            Muestra esto solo si el usuario no esta autenticado--}}
 
 {{--Al menos que tengo user_id, se muestra todo--}}
-@unless($message->user_id)
+{{--@unless($message->user_id)--}}
+
+@if($showField)
     <label for="nombre">Nombre
         <input class="form-control" type="text" name="nombre" value="{{$message->nombre ?? old('nombre')}}">
     </label><br>
     <label for="email">E-mail
         <input class="form-control" type="email" name="email" value="{{$message->email ?? old('email')}}">
     </label><br>
-@endunless
+@endif
 <label for="comentario">
     Comentario
     <textarea class="form-control" name="comentario" id="" cols="30"
