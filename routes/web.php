@@ -68,3 +68,8 @@ Route::get('roles', function (){
     return \App\Models\Role::with('user')->get();
 });
 
+//Para ver consultas en pantalla
+DB::listen(function ($query){
+    echo "<pre>{$query->sql}</pre>";
+});
+

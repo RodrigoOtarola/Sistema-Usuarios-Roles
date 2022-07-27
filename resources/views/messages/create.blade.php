@@ -15,7 +15,11 @@
 
         <form action="{{route('mensaje.store')}}" method="POST">
 
-            @include('messages.form',['message'=>new App\Models\Message()])
+            @include('messages.form',[
+                'message'=>new App\Models\Message(),
+                'showFields' =>auth()->guest()
+                ])
+            {{--Para mostrar los campos solo si es invitado--}}
 
         </form>
         <hr>

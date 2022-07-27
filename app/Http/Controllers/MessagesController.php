@@ -26,8 +26,10 @@ class MessagesController extends Controller
     {
         //$messages = DB::table('messages')->get();
 
-        //Con eloquent
-        $messages = Message::all();
+        //Con eloquent $messages = Message::all();
+
+        //with para optimizar consulta relación con usuario y get para traer consulta
+        $messages= Message::with(['user','note','tags'])->get();
 
         return view('messages.saludo', compact('messages'));
     }

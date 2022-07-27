@@ -27,7 +27,9 @@ class UsersController extends Controller
     public function index()
     {
         //Para pedir todos los usuarios de la base de datos.
-        $users = User::paginate(8);
+        //$users = User::paginate(8);
+
+        $users = User::with(['roles','note','tags'])->get();
         return view('users.index',compact('users'));
     }
 

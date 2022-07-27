@@ -4,7 +4,7 @@
 {{--Al menos que tengo user_id, se muestra todo--}}
 {{--@unless($message->user_id)--}}
 
-@if($showField)
+@if($showFields)
     <label for="nombre">Nombre
         <input class="form-control" type="text" name="nombre" value="{{$message->nombre ?? old('nombre')}}">
     </label><br>
