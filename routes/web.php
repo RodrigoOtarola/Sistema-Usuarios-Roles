@@ -69,7 +69,7 @@ Route::get('roles', function (){
 });
 
 //Para ver consultas en pantalla
-DB::listen(function ($query){
-    echo "<pre>{$query->sql}</pre>";
-});
+//DB::listen(function ($query){
+//    echo "<pre>{$query->sql}</pre>";
+//});
 

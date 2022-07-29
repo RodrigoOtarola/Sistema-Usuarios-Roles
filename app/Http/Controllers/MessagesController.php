@@ -7,6 +7,7 @@ use App\Models\Message;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class MessagesController extends Controller
 {
@@ -18,7 +19,7 @@ class MessagesController extends Controller
     public function __construct()
     {
         //En caso de ingresar directo a una ruta, la direcciona al login, exceptos los pasados por el parametro except.
-        $this->middleware('auth',['except'=>'create','store']);
+        $this->middleware('auth',['except'=>['create','store']]);
     }
 
 
@@ -75,7 +76,7 @@ class MessagesController extends Controller
 //        $message->save();
 
         //con metodo create, se debe crea $fillable en el modelo
-        //$message = Message::create($request->all());
+        $message = Message::create($request->all());
 //
 //        if(auth()->check()){
 //            auth()->user()->messages()->save($message);
@@ -83,13 +84,20 @@ class MessagesController extends Controller
 
 //        Para ejecucion solo con usuarios autenticados.
 
-        auth()->user()->messages()->create($request->all());
+        //auth()->user()->messages()->create($request->all());
 
 //        $message->user_id = auth()->id();
 //        $message->save();
 
+        //Para responder correo en entorno local
+        //Recibe 3 parametro vista, arreglo con la info a pasar y funcion anonima que recibre $message
+        Mail::send('emails.contact',['msg'=>$message], function($m) use ($message){
+
+            $m->to($message->email, $message->name)->subject('Mensaje recibido con exito');
+        });
+
         //Rediccionar
-        return redirect()->route('mensaje.index');
+        return redirect()->route('mensaje.create')->with('info','Hemos recibido tu mensaje');
     }
 
     /**
