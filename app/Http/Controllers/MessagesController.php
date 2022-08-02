@@ -7,6 +7,7 @@ use App\Http\Requests\CreateMessageRequest;
 use App\Models\Message;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -30,8 +31,25 @@ class MessagesController extends Controller
 
         //Con eloquent $messages = Message::all();
 
-        //with para optimizar consulta relación con usuario y get para traer consulta
-        $messages= Message::with(['user','note','tags'])->get();
+        //Llave para que funcione la paginacion
+        $key = "messages.page." . request('page',1);//En la pagina 1, la llave sera messages.page.1
+
+        //1er parametro la llave, 2do el tiempo, y 3ro closure
+        $messages = Cache::remember($key,5,function (){
+            return $messages = Message::with(['user', 'note', 'tags'])->paginate(5);
+        });
+
+//        if (Cache::has($key)){
+//            //Si existe la key consulta el cache
+//
+//            $messages = Cache::get($key);
+//        }else {
+//
+//            //with para optimizar consulta relación con usuario y get para traer consulta
+//            $messages = Message::with(['user', 'note', 'tags'])->paginate(5);//Si no existe, lo crea y guarda el cache por 5 min
+//
+//            Cache::put($key, $messages, 5);
+//        }
 
         return view('messages.saludo', compact('messages'));
     }

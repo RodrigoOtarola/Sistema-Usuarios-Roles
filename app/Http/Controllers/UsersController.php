@@ -29,7 +29,7 @@ class UsersController extends Controller
         //Para pedir todos los usuarios de la base de datos.
         //$users = User::paginate(8);
 
-        $users = User::with(['roles','note','tags'])->get();
+        $users = User::with(['roles','note','tags'])->paginate(7);
         return view('users.index',compact('users'));
     }
 
